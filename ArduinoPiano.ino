@@ -3,9 +3,9 @@
 #define Delay 120
 #define Speaker melodyPin
 
-//Synopisis: This code is intended to play the simple piano notes, as well as play a special Mario theme if the last button is pressed
+//Synopisis: This code is intended to play the simple piano notes, as well as play a special theme if the last button is pressed
 
-int melodyArray[] = {NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4_ NOTE_C5}; //do, re, mi, fa, sol, la, ti, mario theme
+int melodyArray[] = {NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4_ NOTE_C5}; //do, re, mi, fa, sol, la, ti, theme
 
 
 int melody[] = {
