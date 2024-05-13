@@ -5,9 +5,9 @@
 
 //Synopisis: This code is intended to play the simple piano notes, as well as play a special theme if the last button is pressed
 
-int melodyArray[] = {NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4_ NOTE_C5}; //do, re, mi, fa, sol, la, ti, theme
+int melodyArray[] = {NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4_ NOTE_C5}; //do, re, mi, fa, sol, la, ti
 
-
+//thanks to the pitches library, these notes, along with the respected functions, are initalzied for us
 int melody[] = {
   NOTE_F5, NOTE_D5, NOTE_B4, NOTE_G4,
   NOTE_D4, NOTE_E4, NOTE_B4,
@@ -32,7 +32,7 @@ int melody[] = {
   0
 }; // zeros are used to initalize the specific frequencies which were definied above.
 
-//Used MIDI sequencing to transpose the correct musical notes.
+//Used MIDI sequencing to transpose the correct musical notes/ melodies.
 int lucidDreamsMelody[] = {
   4, 4, 4, 4,
   4, 4, 2,
@@ -91,6 +91,9 @@ void melodyDurationLogic(int m){
 
 }
 
+//this function is meant to initilize the musical notes, along with the insturmental player.
+//this function also allows the buttons to play the specific notes I initalized.
+//this is made possible because of the pitches.h library
 void playPiano(){
 
   int buttons[] = {4, 5, 6, 7, 8, 9, 10, 11};
