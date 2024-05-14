@@ -1,6 +1,6 @@
 #include "pitches.h" //this library helps us use the musical notes and initalize them
 #define melodyPin 3
-#define Delay 120
+#define Delay 1000
 #define Speaker melodyPin
 
 //Synopisis: This code is intended to play the simple piano notes, as well as play a special theme if the last button is pressed
@@ -59,14 +59,16 @@ int lucidDreamsMelody[] = {
 
 
 void setup() {
-
   Serial.begin(9600);
   pinMode(melodyPin, OUTPUT);
+  Serial.println("set up");
+
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
     playPiano(); //This code will run contuniously in order to fully initalize the specific notes when the buttons are pressed.
+
 }
 
 void melodyDurationLogic(int m){
@@ -82,6 +84,10 @@ void melodyDurationLogic(int m){
     delay(pauseBetweenNotes);
     noTone(melodyPin);
 
+  }
+
+  if (m == 1){
+    Serial.println("Lucid Dreams");
   }
 
   return;
@@ -104,10 +110,12 @@ void playPiano(){
 
   for(int i = 0; i < numButtons; i++){
 
+
     if(digitalRead(buttons[i]) == HIGH){
       Serial.println(notes[i]);
+    }
 
-      if(i = 7){
+      if(i == 7){
         melodyDurationLogic(1);
         delay(Delay);
 
@@ -121,5 +129,3 @@ void playPiano(){
     }
 
   }
-  
-}
