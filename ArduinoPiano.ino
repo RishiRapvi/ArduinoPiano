@@ -1,11 +1,17 @@
 #include "pitches.h" //this library helps us use the musical notes and initalize them
 #define melodyPin 3
-#define Delay 1000
+#define Delay 120
 #define Speaker melodyPin
 
 //Synopisis: This code is intended to play the simple piano notes, as well as play a special theme if the last button is pressed
 
 int melodyArray[] = {NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4, NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5}; //do, re, mi, fa, sol, la, ti
+
+// Define button pins
+int buttons[] = {4, 5, 6, 7, 8, 9, 10, 11};
+
+// Define the number of buttons
+const int numButtons = sizeof(buttons) / sizeof(int);
 
 //thanks to the pitches library, these notes, along with the respected functions, are initalzied for us
 int melody[] = {
@@ -60,9 +66,15 @@ int lucidDreamsMelody[] = {
 
 void setup() {
   Serial.begin(9600);
+  
+  // Configure melodyPin as an output and set it to LOW
   pinMode(melodyPin, OUTPUT);
-  Serial.println("set up");
-
+  digitalWrite(melodyPin, LOW);
+  
+  // Configure button pins as inputs with internal pull-up resistors
+  for (int i = 0; i < numButtons; i++) {
+    pinMode(buttons[i], INPUT_PULLUP);
+  }
 }
 
 void loop() {
@@ -99,9 +111,7 @@ void melodyDurationLogic(int m){
 //this is made possible because of the pitches.h library
 void playPiano(){
 
-  int buttons[] = {4, 5, 6, 7, 8, 9, 10, 11};
   const char notes[][12] = {"DO", "RE", "MI", "FA", "SOL", "LA", "TI", "Lucid Dreams"};
-  int numButtons = sizeof(buttons)/ sizeof(int);
   int melodySize = sizeof(melody)/ sizeof(int);
 
   // Loop through each button pin
@@ -109,7 +119,6 @@ void playPiano(){
   // If pressed, play the corresponding note
 
   for(int i = 0; i < numButtons; i++){
-
 
     if(digitalRead(buttons[i]) == HIGH){
       Serial.println(notes[i]);
