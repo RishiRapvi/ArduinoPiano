@@ -106,28 +106,33 @@ void melodyDurationLogic(int m){
 
 }
 
-//this function is meant to initilize the musical notes, along with the insturmental player.
-//this function also allows the buttons to play the specific notes I initalized.
-//this is made possible because of the pitches.h library
-void playPiano() {
-    const char notes[][12] = {"DO", "RE", "MI", "FA", "SOL", "LA", "TI", "Lucid Dreams"};
-    int melodySize = sizeof(melody) / sizeof(int);
-    bool buttonPressed = false; // Track if any button is pressed
+void playPiano(){
+  
+  const char notes[][12] = {"DO", "RE", "MI", "FA", "SOL", "LA", "TI", "Lucid Dreams"};
+  int melodySize = sizeof(melody)/ sizeof(int);
 
-    // Loop through each button pin
-    // Check if the button is pressed
-    // If pressed, play the corresponding note
-    for (int i = 0; i < numButtons; i++) {
-        if (digitalRead(buttons[i]) == HIGH) {
-            Serial.println(notes[i]);
-            melodyDurationLogic(1);
-            buttonPressed = true; // Set the flag to true if a button is pressed
+  // Loop through each button pin
+  // Check if the button is pressed
+  // If pressed, play the corresponding note
+
+  for(int i = 0; i < numButtons; i++){
+
+
+    if(digitalRead(buttons[i]) == HIGH){
+      Serial.println(notes[i]);
+    }
+
+      if(i == 7){
+        melodyDurationLogic(1);
+        delay(Delay);
+
+       } else{
+          tone(Speaker, melody[i % melodySize]);
+          delay(Delay);
+          noTone(Speaker);
+
         }
-    }
-
-    // If no button is pressed, do not play any melody
-    if (!buttonPressed) {
-        Serial.println("No button is pressed!");
 
     }
-}
+
+  }
