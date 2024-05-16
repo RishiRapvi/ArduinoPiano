@@ -127,7 +127,7 @@ void playPiano() {
 
     // If no button is pressed, do not play any melody
     if (!buttonPressed) {
-        Serial.println("No button is pressed!";
+        Serial.println("No button is pressed!");
 
     }
 }
